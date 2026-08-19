@@ -5,7 +5,9 @@ require('dotenv').config({
   path: path.resolve(__dirname, '../../.env')
 });
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const dbUrl = process.env.DATABASE_URL ? process.env.DATABASE_URL.replace(/\\/g, '') : '';
+
+const sequelize = new Sequelize(dbUrl, {
   dialect: 'mysql',
   logging: false,
 });
